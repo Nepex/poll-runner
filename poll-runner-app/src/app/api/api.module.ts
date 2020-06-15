@@ -9,6 +9,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 
 // App
 import { SessionService } from './session/session.service';
+import { UserService } from './user/user.service';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { SessionService } from './session/session.service';
     ],
     providers: [
         SessionService,
+        UserService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

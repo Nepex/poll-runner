@@ -1,0 +1,79 @@
+<pr-header [selectedTab]="'signup'"></pr-header>
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center intro-message">
+            <h5>Sign Up</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-8 offset-2 text-center">
+            <pr-alert-messages [messages]="messages"></pr-alert-messages>
+            
+            <form (ngSubmit)="createUser()" [formGroup]="signUpForm" novalidate>
+                <pr-alert-messages [messages]="messages"></pr-alert-messages>
+                <div class="form-group position-relative">
+                    <pr-form-validation-msgs [control]="signUpForm.controls.first_name"
+                        [submitted]="signUpForm.submitted">
+                    </pr-form-validation-msgs>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control text-input" formControlName="first_name"
+                                autocomplete="off" spellcheck="false" autofocus placeholder="First name" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group position-relative">
+                    <pr-form-validation-msgs [control]="signUpForm.controls.last_name"
+                        [submitted]="signUpForm.submitted">
+                    </pr-form-validation-msgs>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control text-input" formControlName="last_name"
+                                autocomplete="off" spellcheck="false" autofocus placeholder="Last name" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group position-relative">
+                    <pr-form-validation-msgs [control]="signUpForm.controls.email" [submitted]="signUpForm.submitted">
+                    </pr-form-validation-msgs>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control text-input" formControlName="email" name="email"
+                                id="email" spellcheck="false" autocomplete="off" placeholder="Email" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group position-relative">
+                    <pr-form-validation-msgs [control]="signUpForm.controls.password"
+                        [submitted]="signUpForm.submitted"></pr-form-validation-msgs>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="password" class="form-control text-input" formControlName="password"
+                                placeholder="Password" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group position-relative">
+                    <pr-form-validation-msgs [control]="signUpForm.controls.passwordConfirm"
+                        [submitted]="signUpForm.submitted"></pr-form-validation-msgs>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="password" class="form-control text-input" formControlName="passwordConfirm"
+                                placeholder="Confirm Password" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="SIGN UP" class="btn btn-primary cursor-pointer" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

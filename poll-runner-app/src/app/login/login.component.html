@@ -1,1 +1,44 @@
-Login
+<pr-header [selectedTab]="'login'"></pr-header>
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center intro-message">
+            <h5>Welcome to Poll Runner!</h5>
+            <h6>Please login to continue.</h6>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-8 offset-2 text-center">
+            <pr-alert-messages [messages]="messages"></pr-alert-messages>
+
+            <form (ngSubmit)="attemptLogin()" [formGroup]="loginForm" novalidate>
+                <div class="form-group position-relative">
+                    <pr-form-validation-msgs [control]="loginForm.controls.email" [submitted]="loginForm.submitted">
+                    </pr-form-validation-msgs>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control text-input" formControlName="email" name="email"
+                                id="email" spellcheck="false" autocomplete="off" placeholder="Email" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group position-relative">
+                    <pr-form-validation-msgs [control]="loginForm.controls.password" [submitted]="loginForm.submitted">
+                    </pr-form-validation-msgs>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="password" class="form-control text-input" formControlName="password"
+                                placeholder="Password" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="LOGIN" class="btn btn-primary cursor-pointer" />
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

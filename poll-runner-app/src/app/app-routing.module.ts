@@ -4,10 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 // App
 import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './signup/signup.component';
 
 export const routes: Routes = [
   // public
   { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignUpComponent },
+
 
   // private
   // { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
