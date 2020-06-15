@@ -21,6 +21,10 @@ Run `ng serve` while in /poll-runner-app directory
 
 Navigate to `localhost:4200` in a browser
 
+## Usage
+
 Create some users with valid emails
 
-Log into admin (admin@example.com, password: admin)
+Log into admin (user:admin@example.com, password:admin)
+
+Use tools to create/manage/send polls
