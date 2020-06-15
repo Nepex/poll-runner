@@ -19,4 +19,4 @@ Run `npm i -g @angular/cli`
 
 Run `ng serve` while in /poll-runner-app directory
 
-Navigate to `localhost:4200`
+Navigate to `localhost:4200` in a browser
