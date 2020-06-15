@@ -13,7 +13,7 @@ Run create-tables.sql (located in poll-runner-api/create-db/) in query tool to c
 
 CD into /poll-runner-api and run `npm i` then `node index.js`
 
-## Frontend instructions
+## Frontend Instructions
 
 Run `npm i -g @angular/cli`
 
