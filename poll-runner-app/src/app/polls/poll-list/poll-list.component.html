@@ -1,0 +1,34 @@
+<pr-header [selectedTab]="'poll_management'" [isAdmin]="user.is_admin" *ngIf="user"></pr-header>
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center page-title">
+            <h5>Polls</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 col-12">
+            <div class="text-center">
+                <a href="/create-poll"><button class="btn btn-primary">Create Poll</button></a> &nbsp;
+                <a href="/send-poll"><button class="btn btn-primary">Send Poll</button></a>
+            </div>
+
+            <div *ngIf="polls">
+                <table class="table table-striped table-borderless" *ngIf="polls.length > 0">
+                    <thead>
+                        <tr>
+                            <th scope="col-10">Poll Name</th>
+                            <th scope="col-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of polls">
+                            <td>{{ p.name }}</td>
+                            <td><i class="fas fa-times cursor-pointer"></i> <i class="fas fa-zoom cursor-pointer"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

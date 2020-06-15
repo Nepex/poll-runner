@@ -24,8 +24,14 @@
                     <li class="header-link" [ngClass]="{ 'active': selectedTab === 'signup'}" *ngIf="!userAuthed"><a
                             href="/signup">Signup</a></li>
 
-                    <li class="header-link cursor-pointer" [ngClass]="{ 'active': selectedTab === 'signup'}" *ngIf="userAuthed"><a
-                            (click)="logout();">Logout</a></li>
+                    <li class="header-link" [ngClass]="{ 'active': selectedTab === 'dashboard'}"
+                        *ngIf="userAuthed"><a href="/dashboard">Dashboard</a></li>
+
+                    <li class="header-link" [ngClass]="{ 'active': selectedTab === 'poll_management'}"
+                        *ngIf="userAuthed && isAdmin"><a href="/poll-list">Poll Management</a></li>
+
+                    <li class="header-link cursor-pointer" [ngClass]="{ 'active': selectedTab === 'signup'}"
+                        *ngIf="userAuthed"><a (click)="logout();">Logout</a></li>
                 </ul>
             </div>
         </nav>

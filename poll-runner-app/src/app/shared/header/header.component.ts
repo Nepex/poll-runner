@@ -18,6 +18,7 @@ import { User } from '../../api/user/user';
 export class HeaderComponent implements OnInit {
     // Component Inputs
     @Input() selectedTab: string;
+    @Input() isAdmin: boolean = false;
 
     // Subs
     loadingRequest: Observable<User>;

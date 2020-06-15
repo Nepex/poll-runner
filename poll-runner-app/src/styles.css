@@ -21,6 +21,11 @@ html, body {
     position: relative;
 }
 
+.page-title {
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+
 button, button:focus, button:active {
     box-shadow: none !important;
     outline: none !important;

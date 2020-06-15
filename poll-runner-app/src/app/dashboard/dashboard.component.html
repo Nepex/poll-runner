@@ -1,8 +1,8 @@
-<pr-header [selectedTab]="'dashboard'"></pr-header>
+<pr-header [selectedTab]="'dashboard'" [isAdmin]="user.is_admin" *ngIf="user"></pr-header>
 <div class="container">
     <div class="row">
-        <div class="col-12 text-center">
-            <h5>Welcome to auth area</h5>
+        <div class="col-12 text-center page-title">
+            <h5>Dashboard</h5>
         </div>
     </div>
 </div>

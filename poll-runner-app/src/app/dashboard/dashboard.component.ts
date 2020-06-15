@@ -1,7 +1,10 @@
 // Angular
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 // App
+import { User } from '../api/user/user';
+import { UserService } from '../api/user/user.service';
 
 // User/admin dashboard
 @Component({
@@ -9,5 +12,21 @@ import { Component } from '@angular/core';
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+    // Subs
+    loadingRequest: Observable<User>;
+
+    // Data stores
+    user: User;
+    
+    constructor(private userService: UserService) {}
+
+    ngOnInit(): void {
+        this.loadingRequest = this.userService.getUser();
+
+        this.loadingRequest.subscribe(res => {
+            this.loadingRequest = null;
+            this.user = res;
+        })
+    }
 }

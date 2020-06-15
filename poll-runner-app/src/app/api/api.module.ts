@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 
 // App
+import { PollService } from './poll/poll.service';
 import { SessionService } from './session/session.service';
 import { UserService } from './user/user.service';
 
@@ -22,6 +23,7 @@ import { UserService } from './user/user.service';
     exports: [
     ],
     providers: [
+        PollService,
         SessionService,
         UserService,
         {
