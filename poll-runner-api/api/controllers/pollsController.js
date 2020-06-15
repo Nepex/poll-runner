@@ -1,6 +1,7 @@
 const server = require('../../connection.js');
 const Joi = require('joi');
 const uuidv4 = require('uuid/v4');
+const user = require('../models/user.js');
 
 const createPollParams = Joi.object().keys({
     poll_name: Joi.string().trim().max(60).required(),
@@ -14,6 +15,23 @@ const getPolls = (request, response) => {
         }
         response.status(200).json(results.rows);
     })
+}
+
+async function validateIsAdmin(request, response, next) {
+    const token = request.headers.authorization.split(' ')[1];
+
+    jwt.verify(token, sessionsController.privateKey, function (err, decoded) {
+        if (!decoded) {
+            return response.status(400).send([err]).end();
+        }
+
+        user.checkIfUserIsAdmin(decoded.id).then(function (isAdmin) {
+            if (isAdmin) {
+                return next();
+            }
+            return response.status(400).send(['You need to be an admin to access this feature.']).end();
+        }).catch(function (error) { console.log(error); });
+    });
 }
 
 
@@ -57,6 +75,7 @@ async function deletePoll(request, response) {
 }
 
 module.exports = {
+    validateIsAdmin: validateIsAdmin,
     getPolls: getPolls,
     validateCreatePoll: validateCreatePoll,
     createPoll: createPoll,
