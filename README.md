@@ -9,7 +9,7 @@ Open pgAdmin4.
 
 Create 'poll_runner' database or run create-db.sql (located in poll-runner-api/create-db/) in query tool.
 
-Run create-tables.sql (located in poll-runner-api/create-db/) in query tool to create required tables.
+Run create-tables.sql (located in poll-runner-api/create-db/) in query tool to create required tables, also inserts the admin account.
 
 CD into /poll-runner-api and run `npm i` then `node index.js`
 
@@ -20,3 +20,7 @@ Run `npm i -g @angular/cli`
 Run `ng serve` while in /poll-runner-app directory
 
 Navigate to `localhost:4200` in a browser
+
+Create some users with valid emails
+
+Log into admin (admin@example.com, password: admin)
