@@ -2,11 +2,6 @@ nav {
     display: inline-block;
 }
 
-a {
-    color: #b6b6b6;
-    transition: .5s;
-}
-
 nav {
     display: inline-block;
 }
@@ -17,6 +12,10 @@ nav {
 }
 
 @media (min-width: 344px) {
+    a {
+        color: #666666;
+        transition: .5s;
+    }
     .active {}
     .header-container {
         height: 50px;
@@ -48,6 +47,10 @@ nav {
 }
 
 @media (min-width: 992px) {
+    a {
+        color: #b6b6b6;
+        transition: .5s;
+    }
     .nav-items {
         background-color: transparent;
         position: relative;

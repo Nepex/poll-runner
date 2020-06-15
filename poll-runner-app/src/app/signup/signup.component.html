@@ -11,7 +11,6 @@
             <pr-alert-messages [messages]="messages"></pr-alert-messages>
             
             <form (ngSubmit)="createUser()" [formGroup]="signUpForm" novalidate>
-                <pr-alert-messages [messages]="messages"></pr-alert-messages>
                 <div class="form-group position-relative">
                     <pr-form-validation-msgs [control]="signUpForm.controls.first_name"
                         [submitted]="signUpForm.submitted">

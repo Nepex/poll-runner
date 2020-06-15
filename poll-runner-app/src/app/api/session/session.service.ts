@@ -48,6 +48,8 @@ export class SessionService {
     }
 
     public login(credentials: Credentials): Observable<Session> {
+        this.currentSession = null;
+
         if (this.currentSession) {
             throw new Error('already logged in');
         }

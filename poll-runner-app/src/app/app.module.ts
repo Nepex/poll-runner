@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { ApiModule } from './api/api.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth-guard.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { SignUpComponent } from './signup/signup.component';
@@ -16,6 +17,7 @@ import { SignUpComponent } from './signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
     LoginComponent,
     SignUpComponent
   ],

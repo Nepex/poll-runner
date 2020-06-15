@@ -7,11 +7,9 @@ import { Component, Input } from '@angular/core';
     template:
     `<div class="text-center" style="padding-top: 10px; padding-bottom: 10px;" *ngFor="let m of messages">
         <div class="alert {{ m.type }}" *ngIf="m">
+        <i class="fa fa-times" style="cursor: pointer; position: absolute; top: 2px; right: 4px; font-size: 11px;" (click)="close(m)"></i>
             
             <div style="position: relative; margin-left: auto; margin-right: auto;">
-            <p style="position: absolute;">
-                <i class="fa fa-times" style="cursor: pointer; position: absolute; top: -9px; left: 179px; font-size: 11px;" (click)="close(m)"></i>
-            </p>
                 {{ m.message }}
             </div>
 

@@ -18,13 +18,14 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
                 <ul class="navbar-nav mr-auto nav-items">
-                    <li class="header-link" [ngClass]="{ 'active': selectedTab === 'login'}"><a href="/login">Login</a>
+                    <li class="header-link" [ngClass]="{ 'active': selectedTab === 'login'}" *ngIf="!userAuthed"><a
+                            href="/login">Login</a>
                     </li>
-                    <li class="header-link" [ngClass]="{ 'active': selectedTab === 'signup'}"><a
+                    <li class="header-link" [ngClass]="{ 'active': selectedTab === 'signup'}" *ngIf="!userAuthed"><a
                             href="/signup">Signup</a></li>
 
-                    <!-- <li class="header-link d-block d-lg-none cursor-pointer" *ngIf="userAuthed"><a
-                            (click)="logout();">Logout</a></li> -->
+                    <li class="header-link cursor-pointer" [ngClass]="{ 'active': selectedTab === 'signup'}" *ngIf="userAuthed"><a
+                            (click)="logout();">Logout</a></li>
                 </ul>
             </div>
         </nav>

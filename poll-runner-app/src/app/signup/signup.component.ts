@@ -49,7 +49,7 @@ export class SignUpComponent {
         }
 
         if (this.signUpForm.value.password !== this.signUpForm.value.passwordConfirm) {
-            this.messages.push({ message: 'Passwords do not match', type: 'error' });
+            this.messages.push({ message: 'Passwords do not match', type: 'alert-danger' });
             return;
         }
 
@@ -65,16 +65,19 @@ export class SignUpComponent {
         this.loadingRequest.subscribe(res => {
             this.loadingRequest = null;
             this.signUpForm['submitted'] = false;
-            this.messages.push({ message: 'Account created! Redirecting...', type: 'success' });
-            this.signUpForm.reset();
+            this.messages.push({ message: 'Account created! Redirecting...', type: 'alert-success' });
 
-            this.logUserIn(body);
+            setTimeout(() => {
+                this.signUpForm.reset();
+                this.logUserIn(body);
+            }, 100);
+
         }, err => {
             this.loadingRequest = null;
             this.signUpForm['submitted'] = false;
 
             err.error.forEach(error => {
-                this.messages.push({ message: error, type: 'error' });
+                this.messages.push({ message: error, type: 'alert-danger' });
             });
         });
     }
@@ -94,13 +97,13 @@ export class SignUpComponent {
         this.loadingRequest.subscribe(res => {
             this.loadingRequest = null;
             setTimeout(() => {
-                this.router.navigateByUrl('/chat');
+                this.router.navigateByUrl('/dashboard');
             }, 500);
         }, err => {
             this.loadingRequest = null;
             this.signUpForm['submitted'] = false;
             err.error.forEach(error => {
-                this.messages.push({ message: error, type: 'error' });
+                this.messages.push({ message: error, type: 'alert-danger' });
             });
         });
     }
