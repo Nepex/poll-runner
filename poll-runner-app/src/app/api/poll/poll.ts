@@ -1,4 +1,5 @@
 export class Poll {
-    name: string;
+    id?: string;
+    poll_name: string;
     questions: string[];
 }

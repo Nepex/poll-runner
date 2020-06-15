@@ -8,23 +8,30 @@
 
     <div class="row">
         <div class="col-lg-8 offset-lg-2 col-12">
-            <div class="text-center">
+            <div class="text-center poll-buttons">
                 <a href="/create-poll"><button class="btn btn-primary">Create Poll</button></a> &nbsp;
                 <a href="/send-poll"><button class="btn btn-primary">Send Poll</button></a>
             </div>
+
+            <pr-alert-messages [messages]="messages"></pr-alert-messages>
 
             <div *ngIf="polls">
                 <table class="table table-striped table-borderless" *ngIf="polls.length > 0">
                     <thead>
                         <tr>
-                            <th scope="col-10">Poll Name</th>
-                            <th scope="col-2">Actions</th>
+                            <th scope="col-11">Poll Name</th>
+                            <th scope="col-1 text-right"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let p of polls">
-                            <td>{{ p.name }}</td>
-                            <td><i class="fas fa-times cursor-pointer"></i> <i class="fas fa-zoom cursor-pointer"></i></td>
+                            <td>{{ p.poll_name }}</td>
+                            <td class="text-right">
+                                <i class="fas fa-search cursor-pointer" ngbTooltip="View this poll" placement="top"></i>
+                                &nbsp;
+                                <i class="fas fa-times cursor-pointer" ngbTooltip="Remove this poll" placement="top"
+                                    (click)="deletePoll(p);"></i>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

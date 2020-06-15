@@ -17,7 +17,9 @@ import { UserService } from 'src/app/api/user/user.service';
 })
 export class PollListComponent implements OnInit {
     // Subs
-    loadingRequest: Observable<[Poll[], User]>
+    loadingRequest: Observable<[Poll[], User]>;
+    deleteRequest: Observable<Poll>;
+    refreshRequest: Observable<Poll[]>;
 
     // Data stores
     polls: Poll[];
@@ -31,11 +33,34 @@ export class PollListComponent implements OnInit {
     ngOnInit(): void {
         this.loadingRequest = forkJoin(this.pollService.getPolls(), this.userService.getUser());
 
-       this.loadingRequest.subscribe(res => {
-           this.polls = res[0];
-           this.user = res[1];
+        this.loadingRequest.subscribe(res => {
+            this.polls = res[0];
+            this.user = res[1];
 
-           this.loadingRequest = null;
-       });
+            console.log(this.polls);
+
+            this.loadingRequest = null;
+        });
+    }
+
+    refreshPolls(): void {
+        this.refreshRequest = this.pollService.getPolls();
+
+        this.refreshRequest.subscribe(res => {
+            this.refreshRequest = null;
+            this.polls = res;
+        });
+    }
+
+    deletePoll(poll: Poll): void {
+        // need confirm modal
+        this.messages = [];
+        this.deleteRequest = this.pollService.delete(poll);
+
+        this.deleteRequest.subscribe(res => {
+            this.deleteRequest = null;
+            this.messages.push({ message: 'Poll successfully deleted', type: 'alert-success' });
+            this.refreshPolls();
+        });
     }
 }

@@ -23,11 +23,19 @@ export class PollService {
         return req;
     }
 
-    // public create(user: User): Observable<User> {
-    //     const url = `${this.apiUrl}`;
+    public create(poll: Poll): Observable<Poll> {
+        const url = `${this.apiUrl}`;
 
-    //     const req = this.http.post<User>(url, user).pipe(map(res => res));
+        const req = this.http.post<Poll>(url, poll).pipe(map(res => res));
 
-    //     return req;
-    // }
+        return req;
+    }
+
+    public delete(poll: Poll): Observable<Poll> {
+        const url = `${this.apiUrl}/${poll.id}`;
+
+        const req = this.http.delete<Poll>(url).pipe(map(res => res));
+
+        return req;
+    }
 }

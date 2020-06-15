@@ -10,6 +10,8 @@ function routes(app) {
 
     // polls
     app.get('/polls', pollsController.getPolls);
+    app.post('/polls', pollsController.validateCreatePoll, pollsController.createPoll);
+    app.delete('/polls/:id', pollsController.deletePoll);
 
     // sessions
     app.post('/sessions/auth', sessionsController.authenicateUser);

@@ -1,0 +1,14 @@
+.add-question-text {
+    padding-bottom: 15px;
+}
+
+.question-delete-icon {
+    position: absolute;
+    left: -5px;
+    top: 9px;
+}
+
+.question-input {
+    padding-right: 25px;
+}
+

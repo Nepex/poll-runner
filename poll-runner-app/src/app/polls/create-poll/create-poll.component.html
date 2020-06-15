@@ -12,32 +12,36 @@
 
             <form (ngSubmit)="createPoll()" [formGroup]="pollForm" novalidate>
                 <div class="form-group position-relative">
-                    <pr-form-validation-msgs [control]="pollForm.controls.name" [submitted]="pollForm.submitted">
+                    <pr-form-validation-msgs [control]="pollForm.controls.poll_name" [submitted]="pollForm.submitted">
                     </pr-form-validation-msgs>
                     <div class="col-12">
                         <div class="input-group">
-                            <input type="text" class="form-control text-input" formControlName="name" name="poll-name"
+                            <input type="text" class="form-control text-input" formControlName="poll_name" name="poll-name"
                                 id="pollName" spellcheck="false" autocomplete="off" placeholder="Poll Name" />
                         </div>
                     </div>
                 </div>
 
-                <span (click)="addQuestion();">Add Question</span>
 
                 <div formArrayName="questions" *ngIf="pollFormQuestions">
-                    <div class="form-group position-relative" *ngFor="let q of pollFormQuestions.controls; let i = index" [formGroupName]="i">
-                        <pr-form-validation-msgs [control]="pollForm.controls.name" [submitted]="pollForm.submitted">
+                    <div class="form-group position-relative"
+                        *ngFor="let q of pollFormQuestions.controls; let i = index" [formGroupName]="i">
+                        <pr-form-validation-msgs [control]="pollForm.controls.questions['controls'][i]" [submitted]="pollForm.submitted">
                         </pr-form-validation-msgs>
                         <div class="col-12">
                             <div class="input-group">
-                                <input type="text" class="form-control text-input" formControlName="question" name="poll-name"
-                                    id="pollName" spellcheck="false" autocomplete="off" placeholder="Enter a Question" />
+                                <input type="text" class="form-control text-input question-input"
+                                    formControlName="question" name="poll-name" id="pollName" spellcheck="false"
+                                    autocomplete="off" placeholder="Enter a Question" />
                             </div>
-                            <i class="fas fa-times"  (click)="removeQuestion(i)"></i>
+                            <i class="fas fa-times question-delete-icon cursor-pointer" (click)="removeQuestion(i)" 
+                            ngbTooltip="Remove this question" placement="top"></i>
                         </div>
                     </div>
                 </div>
-               
+
+                <div class="add-question-text"><span (click)="addQuestion();" class="cursor-pointer"><i class="fas fa-plus"></i> Add a Question</span>
+                </div>
 
                 <div class="form-group text-center">
                     <input type="submit" value="Create Poll" class="btn btn-primary cursor-pointer" />
