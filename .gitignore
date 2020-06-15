@@ -1,0 +1,47 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/poll-runner-app/dist
+/pull-runner-app/tmp
+/pull-runner-app/out-tsc
+# Only exists if Bazel was run
+/pull-runner-app/bazel-out
+
+# dependencies
+/pull-runner-app/node_modules
+/poll-runner-api/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/pull-runner-app/.sass-cache
+/pull-runner-app/connect.lock
+/pull-runner-app/coverage
+/pull-runner-app/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/pull-runner-app/typings
+
+# System Files
+.DS_Store
+Thumbs.db
