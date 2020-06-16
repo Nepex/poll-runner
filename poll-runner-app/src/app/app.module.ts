@@ -5,6 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
+// NPM
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MomentModule } from 'ngx-moment';
+
 // App
 import { ApiModule } from './api/api.module';
 import { AppComponent } from './app.component';
@@ -29,6 +34,9 @@ import { SignUpComponent } from './signup/signup.component';
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
+    NgbModule,
+    NgxChartsModule,
+    MomentModule,
     PollsModule,
     ReactiveFormsModule,
     SharedModule

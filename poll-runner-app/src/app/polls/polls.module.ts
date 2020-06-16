@@ -30,6 +30,7 @@ import { ViewPollComponent } from './view-poll/view-poll.component';
         CommonModule,
         FormsModule,
         MomentModule,
+        NgbModule,
         ReactiveFormsModule,
         SharedModule,
         NgbModule

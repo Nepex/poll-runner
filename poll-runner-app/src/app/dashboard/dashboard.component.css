@@ -1,0 +1,33 @@
+.data-dropdown {
+    width: 150px;
+}
+
+.chart-data-container {
+    display: inline-block;
+}
+
+.selection-container {
+    padding-bottom: 20px;
+}
+
+.orange {
+    color: rgb(216, 148, 0);
+}
+
+.green {
+    color: green;
+}
+
+@media (min-width: 344px) {
+    .data-dropdown {
+        float: left;
+        padding-top: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    .data-dropdown {
+        float: right;
+        padding-top: 0px;
+    }
+}

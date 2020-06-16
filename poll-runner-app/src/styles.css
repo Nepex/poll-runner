@@ -21,6 +21,10 @@ html, body {
     position: relative;
 }
 
+.inline-block {
+    display: inline-block;
+}
+
 .page-title {
     font-weight: 700;
     padding-bottom: 20px;
