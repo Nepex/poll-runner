@@ -95,7 +95,7 @@ export class SendPollComponent implements OnInit {
         this.messages = [];
 
         if (!this.sendPollsForm.valid || this.loadingRequest || this.createActivePollsRequest) {
-            this.messages.push({ message: 'Please select a form', type: 'alert-danger' });
+            this.messages.push({ message: 'Please select a poll', type: 'alert-danger' });
             return;
         }
 

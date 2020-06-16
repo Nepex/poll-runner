@@ -125,6 +125,8 @@ export class DashboardComponent implements OnInit {
                     }
                 }
 
+                this.activePolls = _.sortBy(this.activePolls, function (o) { return o.last_updated; }).reverse();
+
                 this.userDataRequest = null;
             });
         }
@@ -210,7 +212,7 @@ export class DashboardComponent implements OnInit {
         }
 
         // sort by date
-        this.selectedActivePolls = _.sortBy(this.selectedActivePolls, function (o) { return o.last_updated; });
+        this.selectedActivePolls = _.sortBy(this.selectedActivePolls, function (o) { return o.last_updated; }).reverse();
     }
 
     viewIndividualResults(pollResults: ActivePollsExtra): void {

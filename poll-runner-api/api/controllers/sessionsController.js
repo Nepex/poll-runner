@@ -37,7 +37,7 @@ async function authenicateUser(request, response) {
 
         // in production environment, i would make sure admin password is hashed
         if (lowerEmail === 'admin@example.com') {
-            if (password === 'admin') {
+            if (password === 'password') {
                 var payload = {
                     id: result.rows[0].id
                 }

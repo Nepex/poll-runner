@@ -37,4 +37,4 @@ CREATE TABLE poll_runner.public.active_polls
 ALTER TABLE poll_runner.public.active_polls
     OWNER to postgres;
 
-INSERT INTO users (id, first_name, last_name, email, password, is_admin) VALUES ('845ba708-c7fe-42d6-bae5-74453a67abac', 'Mister', 'Admin', 'admin@example.com', 'admin', true);
+INSERT INTO users (id, first_name, last_name, email, password, is_admin) VALUES ('845ba708-c7fe-42d6-bae5-74453a67abac', 'Mister', 'Admin', 'admin@example.com', 'password', true);

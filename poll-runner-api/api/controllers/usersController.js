@@ -51,11 +51,7 @@ async function getActivePollsByUserId(request, response) {
       throw error
     }
 
-    if (result.rows.length > 0) {
-      return response.status(201).json(result.rows);
-    } else {
-      return response.status(400).send(['That poll doesn\'t exist']).end();
-    }
+    return response.status(201).json(result.rows);
   })
 }
 
