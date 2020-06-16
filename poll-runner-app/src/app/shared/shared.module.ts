@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertMessagesComponent } from './alert-messages/alert-messages.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { FormValidationMsgsComponent } from './form-validation-msgs/form-validation-msgs.component';
+import { LoadingMaskComponent } from './loading-mask/loading-mask.component';
 import { HeaderComponent } from './header/header.component';
 import { OffClickDirective } from './off-click-directive/off-click-directive';
 
@@ -19,6 +20,7 @@ import { OffClickDirective } from './off-click-directive/off-click-directive';
         AlertMessagesComponent,
         ConfirmationModalComponent,
         FormValidationMsgsComponent,
+        LoadingMaskComponent,
         HeaderComponent,
         OffClickDirective
     ],
@@ -31,6 +33,7 @@ import { OffClickDirective } from './off-click-directive/off-click-directive';
         AlertMessagesComponent,
         ConfirmationModalComponent,
         FormValidationMsgsComponent,
+        LoadingMaskComponent,
         HeaderComponent,
         OffClickDirective
     ],

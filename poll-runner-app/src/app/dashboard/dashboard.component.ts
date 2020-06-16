@@ -37,6 +37,10 @@ export class DashboardComponent implements OnInit {
     selectedActivePolls: ActivePollsExtra[] = [];
     individualResults: ActivePollsExtra;
 
+    // UI
+    page: number = 1;
+    pageSize: number = 10;
+
     // Forms
     pollDataForm: SubmittableFormGroup = new SubmittableFormGroup({
         poll_id: new FormControl('', []),

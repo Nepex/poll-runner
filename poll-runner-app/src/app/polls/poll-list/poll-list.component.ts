@@ -32,7 +32,9 @@ export class PollListComponent implements OnInit {
 
     // UI
     messages: AlertMessage[];
-
+    page: number = 1;
+    pageSize: number = 10;
+    
     constructor(private pollService: PollService, private userService: UserService, private router: Router, private modalService: NgbModal) { }
 
     ngOnInit(): void {
