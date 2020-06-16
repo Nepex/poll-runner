@@ -76,7 +76,7 @@ async function deletePoll(request, response) {
 
 module.exports = {
     getPolls: getPolls,
-    getPollById, getPollById,
+    getPollById: getPollById,
     validateCreatePoll: validateCreatePoll,
     createPoll: createPoll,
     deletePoll: deletePoll
