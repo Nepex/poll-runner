@@ -28,3 +28,7 @@ Create some users with valid emails
 Log into admin (user:admin@example.com, password:admin)
 
 Use tools to create/manage/send polls
+
+## Known Issues
+
+Poll email notifications may get sent to spam folder
