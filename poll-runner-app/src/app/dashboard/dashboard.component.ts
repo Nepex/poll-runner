@@ -105,8 +105,10 @@ export class DashboardComponent implements OnInit {
                 this.activePolls = [];
                 this.polls = res[1];
 
+
+
                 // only display incomplete polls for users
-                for (let i = 0; i < res.length; i++) {
+                for (let i = 0; i < res[0].length; i++) {
                     if (res[0][i].status === 'completed') {
                         continue;
                     }
@@ -122,8 +124,6 @@ export class DashboardComponent implements OnInit {
                         }
                     }
                 }
-
-                console.log(this.activePolls);
 
                 this.userDataRequest = null;
             });

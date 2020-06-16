@@ -26,7 +26,6 @@ export class SendPollComponent implements OnInit {
     // Subs
     loadingRequest: Observable<[Poll[], User[], User]>;
     createActivePollsRequest: Observable<ActivePoll[]>;
-    sendRequest: Observable<Poll>;
 
     // Data stores
     polls: Poll[];
@@ -95,13 +94,14 @@ export class SendPollComponent implements OnInit {
     createActivePolls(): void {
         this.messages = [];
 
-        if (!this.sendPollsForm.valid || this.loadingRequest) {
+        if (!this.sendPollsForm.valid || this.loadingRequest || this.createActivePollsRequest) {
             this.messages.push({ message: 'Please select a form', type: 'alert-danger' });
             return;
         }
 
         if (this.usersToDisplay.length === 0) {
-            this.messages.push({ message: 'Please select user(s) to send to', type: 'alert-danger' })
+            this.messages.push({ message: 'Please select user(s) to send to', type: 'alert-danger' });
+            return;
         }
 
         let body: ActivePoll[] = [];
