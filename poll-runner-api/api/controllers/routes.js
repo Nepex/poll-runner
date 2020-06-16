@@ -17,7 +17,9 @@ function routes(app) {
     app.delete('/polls/:id', usersController.validateIsAdmin, pollsController.deletePoll);
 
     // active polls
-    app.post('/active-polls', usersController.validateIsAdmin, activePollsController.validateCreatePolls, activePollsController.createPolls);
+    app.post('/active-polls', usersController.validateIsAdmin, activePollsController.validateCreateActivePolls, activePollsController.createActivePolls);
+    app.get('/active-polls/:id', activePollsController.getActivePollById);
+    app.put('/active-polls/:id', activePollsController.validateUpdateActivePoll, activePollsController.updateActivePoll);
 
     // sessions
     app.post('/sessions/auth', sessionsController.authenicateUser);

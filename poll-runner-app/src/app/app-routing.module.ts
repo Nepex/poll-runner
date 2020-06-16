@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { PollListComponent } from './polls/poll-list/poll-list.component';
 import { SendPollComponent } from './polls/send-poll/send-poll.component';
 import { SignUpComponent } from './signup/signup.component';
+import { TakePollComponent } from './polls/take-poll/take-poll.component';
 import { ViewPollComponent } from './polls/view-poll/view-poll.component';
 
 export const routes: Routes = [
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
+  { path: 'take-poll', component: TakePollComponent },
 
 
   // private

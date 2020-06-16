@@ -1,0 +1,46 @@
+<div class="container" *ngIf="poll">
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="logo-text"><i class="fas fa-poll"></i> Poll Runner</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center page-title">
+            <h5>{{ poll.poll_name }}</h5>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-8 offset-2 text-center">
+            <pr-alert-messages [messages]="messages"></pr-alert-messages>
+
+            <form (ngSubmit)="sendActivePoll()" [formGroup]="activePollForm" novalidate>
+                <div formArrayName="questions" *ngIf="poll && activePoll">
+                    <div class="row form-group position-relative"
+                        *ngFor="let q of activePollFormQuestions.controls; let i = index" [formGroupName]="i">
+                        <div class="col-lg-6 col-12 text-center poll-question-text">
+                            {{ activePollForm.value.questions[i].question }}
+                        </div>
+                        <div class="col-lg-6 col-12 text-center poll-response-btns">
+                            <span class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic"
+                                formControlName="response" (change)="updateActivePoll('in_progress')">
+                                <label ngbButtonLabel class="opt-toggle-btn">
+                                    <input ngbButton type="radio" [value]="true"> Yes
+                                </label>
+                                <label ngbButtonLabel class="opt-toggle-btn">
+                                    <input ngbButton type="radio" [value]="false"> No
+                                </label>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group text-center create-btn">
+                    <input type="submit" value="Submit" class="btn btn-primary cursor-pointer" />
+                </div>
+            </form>
+
+        </div>
+    </div>

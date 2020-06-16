@@ -1,0 +1,51 @@
+.logo-text {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.create-btn {
+    padding-top: 10px;
+}
+
+.opt-toggle-btn {
+    background-color: #e6e6e6;
+    color: #444444;
+    outline: none;
+    border: 1px solid #7e7e7e;
+}
+
+.opt-toggle-btn:active {
+    animation-name: none !important;
+}
+
+
+
+.active, .focus {
+    background-color: #1f9c00;
+    color: #ffffff;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: .5s;
+}
+
+
+
+@media (min-width: 344px) {
+    .poll-question-text {
+        padding-top: 0px
+    }
+    .poll-response-btns {
+        padding-top: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    .poll-response-btns {
+        padding-top: 0px;
+    }
+    .poll-question-text {
+        padding-top: 2px
+    }
+}

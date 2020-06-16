@@ -15,7 +15,7 @@ export class ActivePollService {
 
     constructor(private http: HttpClient) { }
 
-    // public getPolls(): Observable<Poll[]> {
+    // public getActivePolls(): Observable<Poll[]> {
     //     const url = `${this.apiUrl}`;
 
     //     const req = this.http.get<Poll[]>(url).pipe(map(res => res));
@@ -23,13 +23,13 @@ export class ActivePollService {
     //     return req;
     // }
 
-    // public getById(id: string): Observable<Poll> {
-    //     const url = `${this.apiUrl}/${id}`;
+    public getById(id: string): Observable<ActivePoll> {
+        const url = `${this.apiUrl}/${id}`;
 
-    //     const req = this.http.get<Poll>(url);
+        const req = this.http.get<ActivePoll>(url);
 
-    //     return req;
-    // }
+        return req;
+    }
 
     public create(polls: ActivePoll[]): Observable<ActivePoll[]> {
         const url = `${this.apiUrl}`;
@@ -39,11 +39,11 @@ export class ActivePollService {
         return req;
     }
 
-    // public delete(id: string): Observable<Poll> {
-    //     const url = `${this.apiUrl}/${id}`;
+    public update(poll: ActivePoll): Observable<ActivePoll> {
+        const url = `${this.apiUrl}/${poll.id}`;
 
-    //     const req = this.http.delete<Poll>(url).pipe(map(res => res));
+        const req = this.http.put<ActivePoll>(url, poll).pipe(map(res => res));
 
-    //     return req;
-    // }
+        return req;
+    }
 }

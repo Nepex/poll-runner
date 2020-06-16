@@ -14,6 +14,7 @@ import { CreatePollComponent } from './create-poll/create-poll.component';
 import { PollListComponent } from './poll-list/poll-list.component';
 import { SendPollComponent } from './send-poll/send-poll.component';
 import { SharedModule } from '../shared/shared.module';
+import { TakePollComponent } from './take-poll/take-poll.component';
 import { ViewPollComponent } from './view-poll/view-poll.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ViewPollComponent } from './view-poll/view-poll.component';
         CreatePollComponent,
         PollListComponent,
         SendPollComponent,
+        TakePollComponent,
         ViewPollComponent
     ],
     imports: [

@@ -33,15 +33,13 @@ export class ViewPollComponent implements OnInit {
         });
     }
 
-    getData(id) {
+    getData(id): void {
         this.loadingRequest = forkJoin(this.userService.getUser(), this.pollService.getById(id));
 
         this.loadingRequest.subscribe(res => {
             this.loadingRequest = null;
             this.user = res[0];
             this.poll = res[1];
-
-            console.log(this.poll);
         })
     }
 }

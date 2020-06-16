@@ -62,7 +62,7 @@ export class CreatePollComponent implements OnInit {
         }));
     }
 
-    removeQuestion(idx) {
+    removeQuestion(idx): void {
         let questions = this.pollForm.get('questions') as FormArray;
 
         questions.removeAt(idx);

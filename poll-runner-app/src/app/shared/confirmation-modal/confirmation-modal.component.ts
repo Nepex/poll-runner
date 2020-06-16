@@ -9,7 +9,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   template: `
     <div id="confirmationModal">
       <div class="modal-header">
-          <span class="modal-title pull-left">Are you sure?</span>
+          <span class="modal-title pull-left">Message from Poll Runner</span>
           <button type="button" class="close pull-right" aria-label="Close" (click)="activeModal.dismiss('cancel')">
           <span style="color:#fff" aria-hidden="true">&times;</span>
           </button>
@@ -25,13 +25,14 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-sm" (click)="activeModal.close('ok')">OK</button>
-        <button type="button" class="btn btn-sm" (click)="activeModal.dismiss('cancel')">Cancel</button>
+        <button type="button" class="btn btn-sm" (click)="activeModal.dismiss('cancel')" *ngIf="type === 'confirmation'">Cancel</button>
       </div>
     </div>
   `,
 })
 export class ConfirmationModalComponent {
   @Input() message;
+  @Input() type;
 
   constructor(public activeModal: NgbActiveModal) {}
 }

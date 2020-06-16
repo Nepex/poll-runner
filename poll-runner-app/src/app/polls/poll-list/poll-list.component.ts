@@ -58,7 +58,8 @@ export class PollListComponent implements OnInit {
     confirmPollDelete(poll: Poll) {
         const modalRef = this.modalService.open(ConfirmationModalComponent);
         modalRef.componentInstance.message = 'Are you sure you want to delete ' + poll.poll_name + '?';
-
+        modalRef.componentInstance.type = 'confirmation';
+        
         modalRef.result.then((result) => {
             this.deletePoll(poll.id);
         }, (reason) => { });
