@@ -146,8 +146,7 @@
                         <tr *ngFor="let p of activePolls | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                             <td><strong>{{ p.poll_name }}</strong></td>
                             <td><strong>{{ p.last_updated | amDateFormat: 'MMM-DD-YY HH:mm a' }}</strong></td>
-                            <td><a href="/take-poll?id={{p.id}}&user_id={{p.user_id}}&poll_id={{p.poll_id}}"
-                                    target="_blank">
+                            <td><a href="/take-poll?id={{p.id}}&user_id={{p.user_id}}&poll_id={{p.poll_id}}&fromEmail=false">
                                     <i class="fas fa-edit cursor-pointer black" ngbTooltip="Take Poll"
                                         placement="top"></i>
                                 </a></td>

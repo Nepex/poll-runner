@@ -1,5 +1,5 @@
 // Angular
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { Observable, forkJoin } from 'rxjs';
@@ -32,6 +32,7 @@ export class TakePollComponent implements OnInit {
     activePollId: string;
     pollId: string;
     userId: string;
+    fromEmail: string;
 
     poll: Poll;
     activePoll: ActivePoll;
@@ -46,13 +47,14 @@ export class TakePollComponent implements OnInit {
     });
 
     constructor(private activePollService: ActivePollService, private pollService: PollService, private activatedRoute: ActivatedRoute,
-        private modalService: NgbModal) { }
+        private modalService: NgbModal, private router: Router) { }
 
     ngOnInit(): void {
         this.activatedRoute.queryParams.subscribe(params => {
             this.activePollId = params['id'];
             this.userId = params['user_id'];
             this.pollId = params['poll_id'];
+            this.fromEmail = params['fromEmail'];
 
             this.getData();
         });
@@ -144,8 +146,12 @@ export class TakePollComponent implements OnInit {
             modalRef.componentInstance.type = 'message';
 
             modalRef.result.then((result) => {
-                let win = window.open(null, "_self");
-                win.close();
+                if (this.fromEmail === 'true') {
+                    let win = window.open(null, "_self");
+                    win.close();
+                } else {
+                    this.router.navigateByUrl('/dashboard');
+                }
             }, (reason) => { });
             this.updateActivePollRequest = null;
         });

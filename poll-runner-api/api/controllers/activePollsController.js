@@ -91,7 +91,7 @@ async function createActivePolls(request, response) {
             if (result.rows.length > 0) {
                 user = result.rows[0];
 
-                const message = 'Please visit the following link to take your poll: <a href="http://localhost:4200/take-poll?id=' + id + '&user_id=' + user_id + '&poll_id=' + poll_id + '" target="_blank">Click me</a>';
+                const message = 'Please visit the following link to take your poll: <a href="http://localhost:4200/take-poll?id=' + id + '&user_id=' + user_id + '&poll_id=' + poll_id + '&fromEmail=true" target="_blank">Click me</a>';
 
                 const email = {
                     from: '"Poll Runner" <pollrunner123@hotmail.com>',

@@ -37,5 +37,3 @@ Navigate to `localhost:4200` in a browser
 ## Known Issues
 
 Poll email notifications may get sent to spam folder
-
-User's poll list will not update after completing a poll in a new tab, requires manual refresh (eventemitters don't seem to fire cross-tab/window)
