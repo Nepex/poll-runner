@@ -15,13 +15,13 @@ export class ActivePollService {
 
     constructor(private http: HttpClient) { }
 
-    // public getActivePolls(): Observable<Poll[]> {
-    //     const url = `${this.apiUrl}`;
+    public getActivePolls(): Observable<ActivePoll[]> {
+        const url = `${this.apiUrl}`;
 
-    //     const req = this.http.get<Poll[]>(url).pipe(map(res => res));
+        const req = this.http.get<ActivePoll[]>(url).pipe(map(res => res));
 
-    //     return req;
-    // }
+        return req;
+    }
 
     public getById(id: string): Observable<ActivePoll> {
         const url = `${this.apiUrl}/${id}`;

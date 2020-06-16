@@ -20,6 +20,16 @@ const updateActivePollParams = Joi.object().keys({
 }).required();
 
 
+const getActivePolls = (request, response) => {
+    server.query('SELECT * FROM active_polls', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows);
+    })
+  }
+  
+
 async function getActivePollById(request, response) {
     const id = request.params.id;
 
@@ -139,7 +149,8 @@ const updateActivePoll = (request, response) => {
 }
 
 module.exports = {
-    getActivePollById, getActivePollById,
+    getActivePolls: getActivePolls,
+    getActivePollById: getActivePollById,
     validateCreateActivePolls: validateCreateActivePolls,
     createActivePolls: createActivePolls,
     validateUpdateActivePoll: validateUpdateActivePoll,

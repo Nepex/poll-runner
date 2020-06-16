@@ -6,6 +6,10 @@ nav {
     display: inline-block;
 }
 
+.home-link {
+    color: #666666;
+}
+
 .nav-icon {
     position: relative;
     top: -5px;

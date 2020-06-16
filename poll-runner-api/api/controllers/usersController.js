@@ -43,20 +43,36 @@ async function getUser(request, response) {
   });
 }
 
+async function getActivePollsByUserId(request, response) {
+  const id = request.params.id;
+
+  server.query('SELECT * FROM active_polls WHERE user_id = $1', [id], (error, result) => {
+    if (error) {
+      throw error
+    }
+
+    if (result.rows.length > 0) {
+      return response.status(201).json(result.rows[0]);
+    } else {
+      return response.status(400).send(['That poll doesn\'t exist']).end();
+    }
+  })
+}
+
 async function validateIsAdmin(request, response, next) {
   const token = request.headers.authorization.split(' ')[1];
 
   jwt.verify(token, sessionsController.privateKey, function (err, decoded) {
-      if (!decoded) {
-          return response.status(400).send([err]).end();
-      }
+    if (!decoded) {
+      return response.status(400).send([err]).end();
+    }
 
-      user.checkIfUserIsAdmin(decoded.id).then(function (isAdmin) {
-          if (isAdmin) {
-              return next();
-          }
-          return response.status(400).send(['You need to be an admin to access this feature.']).end();
-      }).catch(function (error) { console.log(error); });
+    user.checkIfUserIsAdmin(decoded.id).then(function (isAdmin) {
+      if (isAdmin) {
+        return next();
+      }
+      return response.status(400).send(['You need to be an admin to access this feature.']).end();
+    }).catch(function (error) { console.log(error); });
   });
 }
 
@@ -103,6 +119,7 @@ async function createUser(request, response) {
 module.exports = {
   getUsers: getUsers,
   getUser: getUser,
+  getActivePollsByUserId: getActivePollsByUserId,
   validateCreateUser: validateCreateUser,
   validateIsAdmin, validateIsAdmin,
   createUser: createUser

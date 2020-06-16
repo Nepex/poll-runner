@@ -1,4 +1,4 @@
-<div class="container" *ngIf="poll">
+<div class="container" *ngIf="poll && activePoll">
     <div class="row">
         <div class="col-12 text-center">
             <div class="logo-text"><i class="fas fa-poll"></i> Poll Runner</div>
@@ -6,13 +6,16 @@
     </div>
 
     <div class="row">
-        <div class="col-12 text-center page-title">
+        <div class="col-12 text-center page-title" *ngIf="activePoll.status !== 'completed'">
             <h5>{{ poll.poll_name }}</h5>
+        </div>
+
+        <div class="col-12 text-center page-title" *ngIf="activePoll.status === 'completed'">
+            <h5>This poll has already been completed.</h5>
         </div>
     </div>
 
-
-    <div class="row">
+    <div class="row" *ngIf="activePoll.status !== 'completed'">
         <div class="col-lg-4 offset-lg-4 col-8 offset-2 text-center">
             <pr-alert-messages [messages]="messages"></pr-alert-messages>
 

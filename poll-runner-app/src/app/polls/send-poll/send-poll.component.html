@@ -38,13 +38,12 @@
                     </div>
                 </div>
 
-                <div class="add-question-text"><span (click)="addUser();" class="cursor-pointer"><i
-                            class="fas fa-plus"></i>
-                        Add User to List</span>
+                <div class="add-question-text"><span (click)="addUser();" class="cursor-pointer"><strong><i
+                            class="fas fa-plus"></i> Add Selected User</strong></span>
                 </div>
 
                 <div class="col-12" *ngFor="let d of usersToDisplay">
-                    <i class="fas fa-times cursor-pointer" (click)="removeUser(d.id)"></i> &nbsp; {{ d.last_name }}, {{ d.first_name }}
+                    <i class="fas fa-times cursor-pointer" (click)="removeUser(d.id)" ngbTooltip="Remove from receiver list" placement="top"></i> &nbsp; {{ d.last_name }}, {{ d.first_name }}
                 </div>
 
                 <div class="form-group text-center">

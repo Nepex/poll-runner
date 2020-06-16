@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 // App
+import { ActivePoll } from '../active-poll/active-poll';
 import { environment } from '../../../environments/environment';
 import { User } from './user';
 
@@ -31,10 +32,10 @@ export class UserService {
         return req;
     }
 
-    public getById(id: string): Observable<User> {
-        const url = `${this.apiUrl}/${id}`;
+    public getActivePollsByUserId(id: string): Observable<ActivePoll[]> {
+        const url = `${this.apiUrl}/active-polls/${id}`;
 
-        const req = this.http.get<User>(url);
+        const req = this.http.get<ActivePoll[]>(url);
 
         return req;
     }

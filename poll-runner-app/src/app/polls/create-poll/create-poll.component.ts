@@ -12,7 +12,7 @@ import { SubmittableFormGroup } from 'src/app/shared/submittable-form-group/subm
 import { User } from 'src/app/api/user/user';
 import { UserService } from 'src/app/api/user/user.service';
 
-// Page for listing polls
+// Page for creating polls
 @Component({
     selector: 'pr-create-poll',
     templateUrl: './create-poll.component.html',
