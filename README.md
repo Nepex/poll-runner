@@ -1,8 +1,9 @@
-# Poll Runner Front End Test
+# Poll Runner Front-End Coding Project
 
 ## Backend Instructions
 
 Install Node.JS/NPM, PostgreSQL, and pgAdmin4.
+
 Set 'postgres' user password to 'root' and port to 5432 if not already set (or set to your config in connection.js).
 
 Open pgAdmin4.
