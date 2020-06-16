@@ -117,6 +117,6 @@ module.exports = {
   getUser: getUser,
   getActivePollsByUserId: getActivePollsByUserId,
   validateCreateUser: validateCreateUser,
-  validateIsAdmin, validateIsAdmin,
+  validateIsAdmin: validateIsAdmin,
   createUser: createUser
 }
