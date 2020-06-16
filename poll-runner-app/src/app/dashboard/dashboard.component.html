@@ -102,14 +102,55 @@
 
             <div class="col-lg-8 offset-lg-2 col-12 text-center" *ngIf="individualResults">
                 <h4>{{ selectedPoll.poll_name }}</h4> <br />
-                <h6><strong>Poll taken by {{ individualResults.first_name }} {{ individualResults.last_name }}</strong></h6>
-                <h6><strong>Completed {{ individualResults.last_updated | amDateFormat: 'MMMM DD, YYYY HH:mm a' }}</strong></h6><br />
+                <h6><strong>Poll taken by {{ individualResults.first_name }} {{ individualResults.last_name }}</strong>
+                </h6>
+                <h6><strong>Completed
+                        {{ individualResults.last_updated | amDateFormat: 'MMMM DD, YYYY HH:mm a' }}</strong></h6><br />
                 <div class="text-center" *ngFor="let q of selectedPoll.questions; let i = index;">
-                    {{ i + 1 }}.) {{ q }} <br /> 
-                    <strong>Result: <span [innerHTML]="individualResults.responses[i] ? 'Yes' : 'No'"></span></strong> <br /> <br />
+                    {{ i + 1 }}.) {{ q }} <br />
+                    <strong>Result: <span [innerHTML]="individualResults.responses[i] ? 'Yes' : 'No'"></span></strong>
+                    <br /> <br />
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div *ngIf="!user.is_admin">
+        <div class="row">
+            <div class="col-12 text-center page-title">
+                <h5>Dashboard</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center" *ngIf="activePolls">
+                <h5><strong>Welcome back {{ user.first_name }}!</strong></h5>
+                <h6><strong>You have {{activePolls.length}} poll requests</strong></h6> <br />
+            </div>
+        </div>
+
+        <div class="col-lg-8 offset-lg-2 col-12 text-center" *ngIf="activePolls">
+            <div class="text-left">
+                <table class="table table-striped table-borderless" *ngIf="activePolls.length > 0">
+                    <thead>
+                        <tr>
+                            <th scope="col-5">Poll</th>
+                            <th scope="col-5">Last Updated</th>
+                            <th scope="col-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of activePolls">
+                            <td><strong>{{ p.poll_name }}</strong></td>
+                            <td><strong>{{ p.last_updated | amDateFormat: 'MMM-DD-YY HH:mm a' }}</strong></td>
+                            <td><a href="/take-poll?id={{p.id}}&user_id={{p.user_id}}&poll_id={{p.poll_id}}"
+                                    target="_blank">
+                                    <i class="fas fa-edit cursor-pointer black" ngbTooltip="Take Poll" placement="top"></i>
+                                </a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

@@ -18,6 +18,10 @@
     color: green;
 }
 
+.black {
+    color: #000000;
+}
+
 @media (min-width: 344px) {
     .data-dropdown {
         float: left;

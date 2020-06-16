@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
     // Subs
     loadingRequest: Observable<User>;
     adminDataRequest: Observable<[User[], ActivePoll[], Poll[]]>;
-    userDataRequest: Observable<ActivePoll[]>;
+    userDataRequest: Observable<[ActivePoll[], Poll[]]>;
 
     // Data stores
     user: User;
@@ -33,9 +33,9 @@ export class DashboardComponent implements OnInit {
     polls: Poll[];
     pollsTaken: number = 0;
     selectedPoll: Poll;
-    activePolls: ActivePoll[];
-    selectedActivePolls: ActivePollsWithUser[] = [];
-    individualResults: ActivePollsWithUser;
+    activePolls: ActivePollsExtra[];
+    selectedActivePolls: ActivePollsExtra[] = [];
+    individualResults: ActivePollsExtra;
 
     // Forms
     pollDataForm: SubmittableFormGroup = new SubmittableFormGroup({
@@ -44,17 +44,10 @@ export class DashboardComponent implements OnInit {
     });
 
     // Chart
+    data: ChartData[] = [];
     gradient: boolean = true;
-    showLegend: boolean = true;
-    showLabels: boolean = true;
-    isDoughnut: boolean = false;
     view: number[] = [400, 300];
-
-    colorScheme = {
-        domain: ['#5AA454', '#A10A28']
-    };
-
-    data: any = [];
+    colorScheme: ChartColors = { domain: ['#5AA454', '#A10A28'] };
 
     constructor(private userService: UserService, private pollService: PollService, private activePollService: ActivePollService) { }
 
@@ -71,6 +64,7 @@ export class DashboardComponent implements OnInit {
 
     getData(): void {
         if (this.user.is_admin) {
+            // get admin view
             this.adminDataRequest = forkJoin(this.userService.getUsers(), this.activePollService.getActivePolls(), this.pollService.getPolls());
 
             this.adminDataRequest.subscribe(res => {
@@ -100,19 +94,32 @@ export class DashboardComponent implements OnInit {
                 }
             });
         } else {
-            this.userDataRequest = this.userService.getActivePollsByUserId(this.user.id);
+            // get user view
+            this.userDataRequest = forkJoin(this.userService.getActivePollsByUserId(this.user.id), this.pollService.getPolls());
 
             this.userDataRequest.subscribe(res => {
                 this.activePolls = [];
+                this.polls = res[1];
 
                 // only display incomplete polls for users
                 for (let i = 0; i < res.length; i++) {
-                    if (res[i].status !== 'completed') {
+                    if (res[0][i].status === 'completed') {
                         continue;
                     }
 
-                    this.activePolls.push(res[i]);
+                    this.activePolls.push(res[0][i]);
                 }
+
+                // add poll names
+                for (let i = 0; i < this.activePolls.length; i++) {
+                    for (let j = 0; j < this.polls.length; j++) {
+                        if (this.activePolls[i].poll_id === this.polls[j].id) {
+                            this.activePolls[i].poll_name = this.polls[j].poll_name;
+                        }
+                    }
+                }
+
+                console.log(this.activePolls);
 
                 this.userDataRequest = null;
             });
@@ -125,7 +132,7 @@ export class DashboardComponent implements OnInit {
         this.selectedPoll = null;
         this.individualResults = null;
 
-        let data = [];
+        let data: ChartData[] = [];
 
         if (this.pollDataForm.value.poll_id === '') {
             return;
@@ -202,13 +209,23 @@ export class DashboardComponent implements OnInit {
         this.selectedActivePolls = _.sortBy(this.selectedActivePolls, function (o) { return o.last_updated; });
     }
 
-    viewIndividualResults(pollResults: ActivePollsWithUser): void {
+    viewIndividualResults(pollResults: ActivePollsExtra): void {
         this.individualResults = pollResults;
     }
 }
 
-class ActivePollsWithUser extends ActivePoll {
+class ActivePollsExtra extends ActivePoll {
     first_name?: string;
     last_name?: string;
     email?: string;
+    poll_name?: string;
+}
+
+class ChartData {
+    question: string;
+    chartData: { name: string, value: number }[];
+}
+
+class ChartColors {
+    domain: string[];
 }
