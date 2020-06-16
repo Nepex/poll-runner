@@ -1,0 +1,56 @@
+<pr-header [selectedTab]="'poll_management'" [isAdmin]="user.is_admin" *ngIf="user"></pr-header>
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center page-title">
+            <h5>Send Poll</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-8 offset-2 text-center">
+            <pr-alert-messages [messages]="messages"></pr-alert-messages>
+
+            <form (ngSubmit)="createActivePolls()" [formGroup]="sendPollsForm" novalidate>
+                <div class="form-group position-relative">
+                    <!-- <pr-form-validation-msgs [control]="sendPollsForm.controls.poll_id" [submitted]="sendPollsForm.submitted">
+                </pr-form-validation-msgs> -->
+                    <div class="col-12">
+                        <div class="input-group">
+                            <select type="text" class="form-control form-control-sm" formControlName="poll_id">
+                                <option value="">Select a Poll...</option>
+                                <option *ngFor="let poll of polls" [value]="poll.id">{{poll.poll_name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group position-relative">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <select type="text" class="form-control form-control-sm" [(ngModel)]="selectedUser"
+                                [ngModelOptions]="{standalone: true}" ngDefaultControl>
+                                <option value="">Select a User...</option>
+                                <option *ngFor="let user of users" [value]="user.id">{{user.last_name}},
+                                    {{user.first_name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add-question-text"><span (click)="addUser();" class="cursor-pointer"><i
+                            class="fas fa-plus"></i>
+                        Add User to List</span>
+                </div>
+
+                <div class="col-12" *ngFor="let d of usersToDisplay">
+                    <i class="fas fa-times cursor-pointer" (click)="removeUser(d.id)"></i> &nbsp; {{ d.last_name }}, {{ d.first_name }}
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Send Poll" class="btn btn-primary cursor-pointer send-btn-pad" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

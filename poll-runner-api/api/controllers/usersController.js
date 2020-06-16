@@ -14,14 +14,14 @@ const createUserParams = Joi.object().keys({
   password: Joi.string().trim().min(5).max(255).required()
 }).required();
 
-// const getUsers = (request, response) => {
-//   server.query('SELECT * FROM users ORDER BY id ASC', (error, results) => {
-//     if (error) {
-//       throw error
-//     }
-//     response.status(200).json(results.rows);
-//   })
-// }
+const getUsers = (request, response) => {
+  server.query('SELECT * FROM users ORDER BY last_name ASC', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows);
+  })
+}
 
 async function getUser(request, response) {
   const token = request.headers.authorization.split(' ')[1];
@@ -40,6 +40,23 @@ async function getUser(request, response) {
       delete user.password
       response.status(200).json(user);
     });
+  });
+}
+
+async function validateIsAdmin(request, response, next) {
+  const token = request.headers.authorization.split(' ')[1];
+
+  jwt.verify(token, sessionsController.privateKey, function (err, decoded) {
+      if (!decoded) {
+          return response.status(400).send([err]).end();
+      }
+
+      user.checkIfUserIsAdmin(decoded.id).then(function (isAdmin) {
+          if (isAdmin) {
+              return next();
+          }
+          return response.status(400).send(['You need to be an admin to access this feature.']).end();
+      }).catch(function (error) { console.log(error); });
   });
 }
 
@@ -84,7 +101,9 @@ async function createUser(request, response) {
 }
 
 module.exports = {
+  getUsers: getUsers,
   getUser: getUser,
   validateCreateUser: validateCreateUser,
+  validateIsAdmin, validateIsAdmin,
   createUser: createUser
 }

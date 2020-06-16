@@ -2,14 +2,16 @@ const server = require('../../connection.js');
 const Joi = require('joi');
 const uuidv4 = require('uuid/v4');
 const user = require('../models/user.js');
+const jwt = require('jsonwebtoken');
+const sessionsController = require('./sessionsController.js');
 
 const createPollParams = Joi.object().keys({
     poll_name: Joi.string().trim().max(60).required(),
-    questions: Joi.array().min(1).max(30).items(Joi.string().trim().lowercase().max(200)).single()
+    questions: Joi.array().min(1).max(30).items(Joi.string().trim().lowercase().max(200)).single().required()
 }).required();
 
 const getPolls = (request, response) => {
-    server.query('SELECT * FROM polls', (error, results) => {
+    server.query('SELECT * FROM polls  ORDER BY poll_name ASC', (error, results) => {
         if (error) {
             throw error
         }
@@ -17,23 +19,21 @@ const getPolls = (request, response) => {
     })
 }
 
-async function validateIsAdmin(request, response, next) {
-    const token = request.headers.authorization.split(' ')[1];
+async function getPollById(request, response) {
+    const id = request.params.id;
 
-    jwt.verify(token, sessionsController.privateKey, function (err, decoded) {
-        if (!decoded) {
-            return response.status(400).send([err]).end();
+    server.query('SELECT * FROM polls WHERE id = $1', [id], (error, result) => {
+        if (error) {
+            throw error
         }
 
-        user.checkIfUserIsAdmin(decoded.id).then(function (isAdmin) {
-            if (isAdmin) {
-                return next();
-            }
-            return response.status(400).send(['You need to be an admin to access this feature.']).end();
-        }).catch(function (error) { console.log(error); });
-    });
+        if (result.rows.length > 0) {
+            return response.status(201).json(result.rows[0]);
+        } else {
+            return response.status(400).send(['That poll doesn\'t exist']).end();
+        }
+    })
 }
-
 
 async function validateCreatePoll(request, response, next) {
     const validationResult = Joi.validate(request.body, createPollParams, { abortEarly: false });
@@ -75,8 +75,8 @@ async function deletePoll(request, response) {
 }
 
 module.exports = {
-    validateIsAdmin: validateIsAdmin,
     getPolls: getPolls,
+    getPollById, getPollById,
     validateCreatePoll: validateCreatePoll,
     createPoll: createPoll,
     deletePoll: deletePoll

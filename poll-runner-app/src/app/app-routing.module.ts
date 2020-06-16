@@ -9,7 +9,9 @@ import { CreatePollComponent } from './polls/create-poll/create-poll.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { PollListComponent } from './polls/poll-list/poll-list.component';
+import { SendPollComponent } from './polls/send-poll/send-poll.component';
 import { SignUpComponent } from './signup/signup.component';
+import { ViewPollComponent } from './polls/view-poll/view-poll.component';
 
 export const routes: Routes = [
   // public
@@ -24,6 +26,8 @@ export const routes: Routes = [
   // admin
   { path: 'poll-list', component: PollListComponent, canActivate: [AuthGuardAdmin] },
   { path: 'create-poll', component: CreatePollComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'view-poll', component: ViewPollComponent, canActivate: [AuthGuardAdmin] },
+  { path: 'send-poll', component: SendPollComponent, canActivate: [AuthGuardAdmin] }
 
   // path doesn't exist
   // { path: '**', component: PageNotFoundComponent }

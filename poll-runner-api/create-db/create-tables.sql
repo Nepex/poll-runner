@@ -26,8 +26,8 @@ ALTER TABLE poll_runner.public.polls
 CREATE TABLE poll_runner.public.active_polls
 (
     "id" uuid NOT NULL,
-    "user_id" uuid NOT NULL,
     "poll_id" uuid NOT NULL,
+    "user_id" uuid NOT NULL,
     "responses" boolean[] NOT NULL DEFAULT ARRAY[]::boolean[],
     "status" character varying(255) NOT NULL DEFAULT 'not_viewed',
     "last_updated" character varying(255) NOT NULL,

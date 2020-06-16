@@ -23,6 +23,14 @@ export class PollService {
         return req;
     }
 
+    public getById(id: string): Observable<Poll> {
+        const url = `${this.apiUrl}/${id}`;
+
+        const req = this.http.get<Poll>(url);
+
+        return req;
+    }
+
     public create(poll: Poll): Observable<Poll> {
         const url = `${this.apiUrl}`;
 
@@ -31,8 +39,8 @@ export class PollService {
         return req;
     }
 
-    public delete(poll: Poll): Observable<Poll> {
-        const url = `${this.apiUrl}/${poll.id}`;
+    public delete(id: string): Observable<Poll> {
+        const url = `${this.apiUrl}/${id}`;
 
         const req = this.http.delete<Poll>(url).pipe(map(res => res));
 

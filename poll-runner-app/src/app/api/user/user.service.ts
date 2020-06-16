@@ -23,6 +23,14 @@ export class UserService {
         return req;
     }
 
+    public getUsers(): Observable<User[]> {
+        const url = `${this.apiUrl}`;
+
+        const req = this.http.get<User[]>(url).pipe(map(res => res));
+
+        return req;
+    }
+
     public getById(id: string): Observable<User> {
         const url = `${this.apiUrl}/${id}`;
 
