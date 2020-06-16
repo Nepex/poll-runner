@@ -23,11 +23,15 @@ Navigate to `localhost:4200` in a browser
 
 ## Usage
 
-Create some users with valid emails
+Create some users (with valid emails if you want notifications)
 
 Log into admin (user:admin@example.com, password:password)
 
-Use tools to create/manage/send polls
+Use poll management tools to create/send polls
+
+Log into user accounts, take polls
+
+Log back into admin to view results
 
 ## Known Issues
 
