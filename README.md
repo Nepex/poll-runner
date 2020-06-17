@@ -32,7 +32,7 @@ If you use other angular apps with ngx-webstorage on localhost:4200, the API may
 
 3.) Use poll management tools to create/send polls
 
-4.) Log into user accounts, take polls
+4.) Log into user accounts, take polls (or use poll links from emails)
 
 5.) Log back into admin to view results
 
