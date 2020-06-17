@@ -24,7 +24,7 @@ Navigate to `localhost:4200` in a browser
 
 ## Usage
 
-1.) Create some users (with valid emails if you want notifications)
+1.) Create some users (with valid emails if you want notifications), Comment out auto login function in signup component if you want to create a lot of users quickly
 
 2.) Log into admin (user:admin@example.com, password:password)
 
