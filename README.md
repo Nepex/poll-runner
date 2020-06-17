@@ -22,7 +22,7 @@ Run `ng serve` while in /poll-runner-app directory
 
 Navigate to `localhost:4200` in a browser
 
-If you use other angular apps with ngx-webstorage on localhost:4200, the API WILL crash. Clear local storage to fix (Chrome: F12>Application>Local Storage>Delete ngx-webstorage|token), then rerun `node index.js`.
+If you use other angular apps with ngx-webstorage on localhost:4200, the API may crash. Clear local storage to fix (Chrome: F12>Application>Local Storage>Delete ngx-webstorage|token), then rerun `node index.js`.
 
 ## Usage
 
