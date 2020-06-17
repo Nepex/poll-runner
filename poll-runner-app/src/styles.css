@@ -30,6 +30,22 @@ html, body {
     padding-bottom: 20px;
 }
 
+.orange {
+    color: rgb(216, 148, 0);
+}
+
+.green {
+    color: green;
+}
+
+.black {
+    color: #000000;
+}
+
+.blue {
+    color: #007bff;
+}
+
 button, button:focus, button:active {
     box-shadow: none !important;
     outline: none !important;
