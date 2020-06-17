@@ -25,6 +25,7 @@ export class ViewPollComponent implements OnInit {
 
     constructor(private userService: UserService, private pollService: PollService, private activatedRoute: ActivatedRoute) { }
 
+    // Gets poll id form url params, attempts to grab poll data
     ngOnInit(): void {
         this.activatedRoute.queryParams.subscribe(params => {
             const id = params['id'];
@@ -33,6 +34,7 @@ export class ViewPollComponent implements OnInit {
         });
     }
 
+    // Gets poll data by id and current user
     getData(id): void {
         this.loadingRequest = forkJoin(this.userService.getUser(), this.pollService.getById(id));
 

@@ -1,11 +1,13 @@
 <pr-loading-mask [watch]="loadingRequest"></pr-loading-mask>
 <div class="container" *ngIf="poll && activePoll">
+    <!-- Logo -->
     <div class="row">
         <div class="col-12 text-center">
             <div class="logo-text"><i class="fas fa-poll"></i> Poll Runner</div>
         </div>
     </div>
 
+    <!-- Title/Poll already taken message -->
     <div class="row">
         <div class="col-12 text-center page-title" *ngIf="activePoll.status !== 'completed'">
             <h5><strong>{{ poll.poll_name }}</strong></h5>
@@ -16,6 +18,7 @@
         </div>
     </div>
 
+    <!-- Poll questions form -->
     <div class="row" *ngIf="activePoll.status !== 'completed'">
         <div class="col-lg-6 offset-lg-3 col-8 offset-2 text-center">
             <pr-alert-messages [messages]="messages"></pr-alert-messages>

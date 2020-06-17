@@ -1,6 +1,7 @@
 <pr-loading-mask [watch]="loadingRequest"></pr-loading-mask>
 <pr-header [selectedTab]="'login'"></pr-header>
 <div class="container">
+    <!-- Title -->
     <div class="row">
         <div class="col-12 text-center intro-message">
             <h5>Welcome to Poll Runner!</h5>
@@ -8,6 +9,7 @@
         </div>
     </div>
 
+    <!-- Login form -->
     <div class="row">
         <div class="col-lg-4 offset-lg-4 col-8 offset-2 text-center">
             <pr-alert-messages [messages]="messages"></pr-alert-messages>
@@ -39,7 +41,6 @@
                     <input type="submit" value="LOGIN" class="btn btn-primary cursor-pointer" />
                 </div>
             </form>
-
         </div>
     </div>
 </div>

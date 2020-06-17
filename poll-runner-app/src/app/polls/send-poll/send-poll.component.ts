@@ -44,6 +44,7 @@ export class SendPollComponent implements OnInit {
 
     constructor(private pollService: PollService, private userService: UserService, private activePollService: ActivePollService) { }
 
+    // Gets current user, all users, and all polls
     ngOnInit(): void {
         this.loadingRequest = forkJoin(this.pollService.getPolls(), this.userService.getUsers(), this.userService.getUser());
 
@@ -64,6 +65,7 @@ export class SendPollComponent implements OnInit {
         });
     }
 
+    // Adds user to recipient list
     addUser(): void {
         if (!this.selectedUser) {
             return;
@@ -82,6 +84,7 @@ export class SendPollComponent implements OnInit {
         }
     }
 
+    // Removes user from recipient list
     removeUser(id: string): void {
         for (let i = 0; i < this.usersToDisplay.length; i++) {
             if (id === this.usersToDisplay[i].id) {
@@ -91,6 +94,7 @@ export class SendPollComponent implements OnInit {
         }
     }
 
+    // Attempts to create active poll (sends poll to all users selected)
     createActivePolls(): void {
         this.messages = [];
 
@@ -107,7 +111,7 @@ export class SendPollComponent implements OnInit {
         let body: ActivePoll[] = [];
         let responses: boolean[] = [];
 
-        // populate responses
+        // populate blank responses
         for (let i = 0; i < this.polls.length; i++) {
             if (this.sendPollsForm.value.poll_id === this.polls[i].id) {
                 for (let j = 0; j < this.polls[i].questions.length; j++) {

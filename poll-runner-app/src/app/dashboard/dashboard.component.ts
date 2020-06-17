@@ -55,6 +55,7 @@ export class DashboardComponent implements OnInit {
 
     constructor(private userService: UserService, private pollService: PollService, private activePollService: ActivePollService) { }
 
+    // Get current user
     ngOnInit(): void {
         this.loadingRequest = this.userService.getUser();
 
@@ -66,6 +67,7 @@ export class DashboardComponent implements OnInit {
         })
     }
 
+    // Get data to organize for chart/user/poll views
     getData(): void {
         if (this.user.is_admin) {
             // get admin view
@@ -134,6 +136,7 @@ export class DashboardComponent implements OnInit {
         }
     }
 
+    // Organize and display selected poll data for charts
     loadPollData(): void {
         this.pollDataForm.controls.user_id.setValue('');
         this.selectedActivePolls = [];
@@ -171,7 +174,7 @@ export class DashboardComponent implements OnInit {
         }
 
         // push responses
-        // data = array of questions for selected poll
+        // data = array of questions for selected poll and chart
         // each completed active poll should have the same number of responses as questions in data, so loop through and add responses
         for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < this.selectedActivePolls.length; j++) {
@@ -190,6 +193,7 @@ export class DashboardComponent implements OnInit {
         this.data = data;
     }
 
+    // Organize and display selected user's poll data for a list
     loadUserData(): void {
         this.selectedActivePolls = [];
         this.individualResults = null;
@@ -216,10 +220,11 @@ export class DashboardComponent implements OnInit {
             }
         }
 
-        // sort by date
+        // sort by dates, most recent
         this.selectedActivePolls = _.sortBy(this.selectedActivePolls, function (o) { return o.last_updated; }).reverse();
     }
 
+    // Organize and display selected user and poll completed data
     viewIndividualResults(pollResults: ActivePollsExtra): void {
         this.individualResults = pollResults;
     }

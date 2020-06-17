@@ -16,6 +16,7 @@ export class OffClickDirective {
     constructor(private elementRef: ElementRef) {
     }
 
+    // Checks element is within click target
     onClick($event): void {
         $event.stopPropagation();
 

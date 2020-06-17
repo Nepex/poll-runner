@@ -37,6 +37,7 @@ export class PollListComponent implements OnInit {
     
     constructor(private pollService: PollService, private userService: UserService, private router: Router, private modalService: NgbModal) { }
 
+    // Gets current user and all polls
     ngOnInit(): void {
         this.loadingRequest = forkJoin(this.pollService.getPolls(), this.userService.getUser());
 
@@ -48,6 +49,7 @@ export class PollListComponent implements OnInit {
         });
     }
 
+    // Refreshes poll list
     refreshPolls(): void {
         this.refreshRequest = this.pollService.getPolls();
 
@@ -57,6 +59,7 @@ export class PollListComponent implements OnInit {
         });
     }
 
+    // Opens modal when poll delete button is clicked to confirm
     confirmPollDelete(poll: Poll) {
         const modalRef = this.modalService.open(ConfirmationModalComponent);
         modalRef.componentInstance.message = 'Are you sure you want to delete ' + poll.poll_name + '?';
@@ -67,6 +70,7 @@ export class PollListComponent implements OnInit {
         }, (reason) => { });
     }
 
+    // Deletes poll
     deletePoll(id: string): void {
         this.messages = [];
         this.deleteRequest = this.pollService.delete(id);
@@ -78,6 +82,7 @@ export class PollListComponent implements OnInit {
         });
     }
 
+    // Redirects to view-poll page and displays selected poll
     viewPoll(poll: Poll): void {
         this.router.navigate(['/view-poll'], { queryParams: { id: poll.id } });
     }

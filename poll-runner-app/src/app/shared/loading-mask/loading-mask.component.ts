@@ -7,5 +7,6 @@ import { Observable } from 'rxjs';
     styleUrls: ['./loading-mask.component.css']
 })
 export class LoadingMaskComponent {
+    // UI
     @Input() watch: Promise<any>|Observable<any>;
 }

@@ -20,6 +20,7 @@ export class AlertMessagesComponent {
     // UI
     @Input() messages: AlertMessage[];
 
+    // Close selected alert
     close(m: AlertMessage): void {
         for (let i = 0; i < this.messages.length; i++) {
             if (m.message === this.messages[i].message) {

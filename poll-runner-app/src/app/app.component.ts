@@ -40,6 +40,7 @@ export class AppComponent implements OnDestroy {
 
   private _navigationInterceptor(event: Event): void {
     if (event instanceof NavigationEnd || event instanceof NavigationCancel) {
+      // timeout so loads aren't jarring/too flashy
       setTimeout(() => {
         this.isLoadingRoute = false;
       }, 250);

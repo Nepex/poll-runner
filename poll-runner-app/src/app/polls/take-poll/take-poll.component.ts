@@ -49,6 +49,7 @@ export class TakePollComponent implements OnInit {
     constructor(private activePollService: ActivePollService, private pollService: PollService, private activatedRoute: ActivatedRoute,
         private modalService: NgbModal, private router: Router) { }
 
+    // Gets required fields off url params to get data needed
     ngOnInit(): void {
         this.activatedRoute.queryParams.subscribe(params => {
             this.activePollId = params['id'];
@@ -62,6 +63,7 @@ export class TakePollComponent implements OnInit {
         this.activePollFormQuestions = (<any>this.activePollForm.controls).questions;
     }
 
+    // Grabs the active poll and the poll - sets active to 'viewed'
     getData(): void {
         this.loadingRequest = forkJoin(this.pollService.getById(this.pollId), this.activePollService.getById(this.activePollId));
 
@@ -78,6 +80,7 @@ export class TakePollComponent implements OnInit {
         })
     }
 
+    // Pushes all questions/responses from poll/active poll to form
     addQuestions(): void {
         let questions = this.activePollForm.get('questions') as FormArray;
 
@@ -89,7 +92,9 @@ export class TakePollComponent implements OnInit {
         }
     }
 
-    updateActivePoll(status: string) {
+    // After any question is answered - updates the poll, save progress
+    // Param status comes from view ('in_progress')
+    updateActivePoll(status: string): void {
         if (this.updateActivePollRequest) {
             return;
         }
@@ -114,6 +119,7 @@ export class TakePollComponent implements OnInit {
         });
     }
 
+    // Attempts to send/complete the active poll when submit is clicked
     sendActivePoll(): void {
         this.messages = [];
 

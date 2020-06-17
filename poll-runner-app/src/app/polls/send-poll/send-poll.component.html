@@ -1,12 +1,14 @@
 <pr-loading-mask [watch]="loadingRequest || createActivePollsRequest"></pr-loading-mask>
 <pr-header [selectedTab]="'poll_management'" [isAdmin]="user.is_admin" *ngIf="user"></pr-header>
 <div class="container">
+    <!-- Title -->
     <div class="row">
         <div class="col-12 text-center page-title">
             <h5><strong>Send Poll</strong></h5>
         </div>
     </div>
 
+    <!-- Send poll form -->
     <div class="row">
         <div class="col-lg-4 offset-lg-4 col-8 offset-2 text-center">
             <pr-alert-messages [messages]="messages"></pr-alert-messages>
@@ -44,7 +46,7 @@
                 </div>
 
                 <div class="col-12" *ngFor="let d of usersToDisplay">
-                    <i class="fas fa-times cursor-pointer" (click)="removeUser(d.id)" ngbTooltip="Remove from receiver list" placement="top"></i> &nbsp; {{ d.last_name }}, {{ d.first_name }}
+                    <i class="fas fa-times cursor-pointer" (click)="removeUser(d.id)" ngbTooltip="Remove from recepient list" placement="top"></i> &nbsp; {{ d.last_name }}, {{ d.first_name }}
                 </div>
 
                 <div class="form-group text-center">

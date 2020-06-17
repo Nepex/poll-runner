@@ -33,12 +33,14 @@ export class LoginComponent {
 
     constructor(public router: Router, private sessionService: SessionService) { }
 
+    // If user is already logged in > go to dashboard
     ngOnInit(): void {
         if (this.sessionService.isAuthenticated) {
             this.router.navigateByUrl('/dashboard');
         }
     }
 
+    // Attempt to log user in
     attemptLogin(): void {
         this.messages = [];
         this.loginForm['submitted'] = true;

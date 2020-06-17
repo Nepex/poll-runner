@@ -1,12 +1,15 @@
 <pr-header [selectedTab]="'dashboard'" [isAdmin]="user.is_admin" *ngIf="user"></pr-header>
 <div class="container" *ngIf="user">
+    <!-- Admin view -->
     <div *ngIf="user.is_admin">
+        <!-- Title -->
         <div class="row">
             <div class="col-12 text-center page-title">
                 <h5><strong>Admin Dashboard</strong></h5>
             </div>
         </div>
 
+        <!-- Stats/dropdown select -->
         <div class="row selection-container" *ngIf="users && polls && activePolls">
             <div class="col-lg-6 col-12">
                 <strong>Users: {{ users.length }}</strong> &nbsp;&nbsp;
@@ -33,6 +36,7 @@
             </div>
         </div>
 
+        <!-- No polls created view -->
         <div *ngIf="polls">
             <div class="row" *ngIf="polls.length === 0">
                 <div class="col-12">
@@ -43,7 +47,7 @@
         </div>
 
         <div class="row">
-            <!-- Chart view -->
+            <!-- Selected Poll Chart view -->
             <div class="col-12 text-center"
                 *ngIf="pollDataForm.value.poll_id !== '' && pollDataForm.value.user_id === '' && data">
                 <h4>{{ selectedPoll.poll_name }}</h4>
@@ -61,7 +65,7 @@
                 </div>
             </div>
 
-            <!-- User poll list view -->
+            <!-- Selected User data -->
             <div class="col-lg-8 offset-lg-2 col-12 text-center"
                 *ngIf="pollDataForm.value.poll_id !== '' && pollDataForm.value.user_id !== '' && !individualResults">
                 <h4>{{ selectedPoll.poll_name }}</h4>
@@ -106,6 +110,7 @@
                 </div>
             </div>
 
+            <!-- Individual user data -->
             <div class="col-lg-8 offset-lg-2 col-12 text-center" *ngIf="individualResults">
                 <h4>{{ selectedPoll.poll_name }}</h4> <br />
                 <h6><strong>Poll taken by {{ individualResults.first_name }} {{ individualResults.last_name }}</strong>
@@ -122,6 +127,7 @@
         </div>
     </div>
 
+    <!-- User view -->
     <div *ngIf="!user.is_admin">
         <div class="row">
             <div class="col-12 text-center page-title">

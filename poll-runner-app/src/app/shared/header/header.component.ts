@@ -32,12 +32,14 @@ export class HeaderComponent implements OnInit {
 
     constructor(private modal: NgbModal, private sessionService: SessionService) { }
 
+    // Checks if user is authed
     ngOnInit(): void {
         if (this.sessionService.isAuthenticated()) {
             this.userAuthed = true;
         }
     }
 
+    // Attempts to log user out
     logout(): void {
         this.sessionService.logout();
         window.location.reload();

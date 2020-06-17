@@ -39,6 +39,7 @@ export class CreatePollComponent implements OnInit {
 
     constructor(private userService: UserService, private pollService: PollService, public router: Router) { }
 
+    // Gets current user and sets a blank question
     ngOnInit(): void {
         this.userRequest = this.userService.getUser();
 
@@ -54,6 +55,7 @@ export class CreatePollComponent implements OnInit {
 
     }
 
+    // Adds another poll question to form
     addQuestion(): void {
         let questions = this.pollForm.get('questions') as FormArray;
 
@@ -62,12 +64,14 @@ export class CreatePollComponent implements OnInit {
         }));
     }
 
+    // Removes selected question from form
     removeQuestion(idx): void {
         let questions = this.pollForm.get('questions') as FormArray;
 
         questions.removeAt(idx);
     }
 
+    // Attempts to create the poll
     createPoll(): void {
         this.messages = [];
         this.pollForm['submitted'] = true;
@@ -97,6 +101,7 @@ export class CreatePollComponent implements OnInit {
             this.pollForm['submitted'] = false;
             this.messages.push({ message: 'Poll created! Redirecting...', type: 'alert-success' });
 
+            // timeout so redirect isn't jarring
             setTimeout(() => {
                 this.pollForm.reset();
                 this.router.navigateByUrl('/poll-list');

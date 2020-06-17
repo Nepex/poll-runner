@@ -40,6 +40,7 @@ export class SignUpComponent {
     constructor(private userService: UserService, private sessionService: SessionService,
         private router: Router) { }
 
+    // Attempts to create the user signing up
     createUser(): void {
         this.messages = [];
         this.signUpForm['submitted'] = true;
@@ -81,6 +82,8 @@ export class SignUpComponent {
         });
     }
 
+    // Auto redirects to login after successful signup
+    // Please comment call in createUser(); if this is annoying while you're trying to mass create users
     logUserIn(body: User): void {
         if (this.loadingRequest) {
             return;
@@ -94,6 +97,7 @@ export class SignUpComponent {
         this.loadingRequest = this.sessionService.login(credentials);
 
         this.loadingRequest.subscribe(res => {
+            // timeout so redirect isn't jarring
             setTimeout(() => {
                 this.loadingRequest = null;
                 this.router.navigateByUrl('/dashboard');

@@ -23,6 +23,23 @@ const getUsers = (request, response) => {
   })
 }
 
+async function validateIsAdmin(request, response, next) {
+  const token = request.headers.authorization.split(' ')[1];
+
+  jwt.verify(token, sessionsController.privateKey, function (err, decoded) {
+    if (!decoded) {
+      return response.status(400).send([err]).end();
+    }
+
+    user.checkIfUserIsAdmin(decoded.id).then(function (isAdmin) {
+      if (isAdmin) {
+        return next();
+      }
+      return response.status(400).send(['You need to be an admin to access this feature.']).end();
+    }).catch(function (error) { console.log(error); });
+  });
+}
+
 async function getUser(request, response) {
   const token = request.headers.authorization.split(' ')[1];
 
@@ -53,23 +70,6 @@ async function getActivePollsByUserId(request, response) {
 
     return response.status(201).json(result.rows);
   })
-}
-
-async function validateIsAdmin(request, response, next) {
-  const token = request.headers.authorization.split(' ')[1];
-
-  jwt.verify(token, sessionsController.privateKey, function (err, decoded) {
-    if (!decoded) {
-      return response.status(400).send([err]).end();
-    }
-
-    user.checkIfUserIsAdmin(decoded.id).then(function (isAdmin) {
-      if (isAdmin) {
-        return next();
-      }
-      return response.status(400).send(['You need to be an admin to access this feature.']).end();
-    }).catch(function (error) { console.log(error); });
-  });
 }
 
 async function validateCreateUser(request, response, next) {

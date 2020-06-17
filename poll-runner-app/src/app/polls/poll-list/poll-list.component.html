@@ -1,6 +1,7 @@
 <pr-loading-mask [watch]="loadingRequest || deleteRequest || refreshRequest"></pr-loading-mask>
 <pr-header [selectedTab]="'poll_management'" [isAdmin]="user.is_admin" *ngIf="user"></pr-header>
 <div class="container">
+    <!-- Title -->
     <div class="row">
         <div class="col-12 text-center page-title">
             <h5><strong>Polls</strong></h5>
@@ -16,6 +17,7 @@
 
             <pr-alert-messages [messages]="messages"></pr-alert-messages>
 
+            <!-- Poll list table -->
             <div *ngIf="polls">
                 <div *ngIf="polls.length > 0">
                     <table class="table table-striped table-borderless">
