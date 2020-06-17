@@ -3,6 +3,12 @@
 }
 
 .chart-data-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart-container {
     display: inline-block;
 }
 

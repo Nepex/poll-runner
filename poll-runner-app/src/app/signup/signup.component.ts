@@ -65,13 +65,12 @@ export class SignUpComponent {
         this.loadingRequest.subscribe(res => {
             this.loadingRequest = null;
             this.signUpForm['submitted'] = false;
-            this.messages.push({ message: 'Account created! Redirecting...', type: 'alert-success' });
+            this.messages.push({ message: 'Account created! Redirecting to dashboard', type: 'alert-success' });
 
-            setTimeout(() => {
-                this.signUpForm.reset();
-                this.logUserIn(body);
-            }, 100);
-
+            this.signUpForm.reset();
+            
+            // comment this and function if you want to turn off auto login after signup
+            this.logUserIn(body);
         }, err => {
             this.loadingRequest = null;
             this.signUpForm['submitted'] = false;
@@ -95,8 +94,8 @@ export class SignUpComponent {
         this.loadingRequest = this.sessionService.login(credentials);
 
         this.loadingRequest.subscribe(res => {
-            this.loadingRequest = null;
             setTimeout(() => {
+                this.loadingRequest = null;
                 this.router.navigateByUrl('/dashboard');
             }, 500);
         }, err => {

@@ -77,6 +77,10 @@ export class DashboardComponent implements OnInit {
                 this.polls = res[2];
                 this.adminDataRequest = null;
 
+                // sort alphabetically
+                this.users = _.sortBy(this.users, function (o) { return o.last_name; });
+                this.polls = _.sortBy(this.polls, function (o) { return o.poll_name; });
+
                 // splice admin account
                 for (let i = 0; i < this.users.length; i++) {
                     if (this.user.id === this.users[i].id) {
