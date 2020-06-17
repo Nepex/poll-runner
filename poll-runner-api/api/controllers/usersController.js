@@ -17,7 +17,7 @@ const createUserParams = Joi.object().keys({
 const getUsers = (request, response) => {
   server.query('SELECT * FROM users ORDER BY last_name ASC', (error, results) => {
     if (error) {
-      throw error
+      return response.status(400).send(['Error loading data']).end();
     }
     response.status(200).json(results.rows);
   })
@@ -50,7 +50,7 @@ async function getUser(request, response) {
 
     server.query('SELECT * FROM users WHERE id = $1', [decoded.id], (error, results) => {
       if (error) {
-        throw error
+        return response.status(400).send(['Error loading data']).end();
       }
 
       const user = results.rows[0];
@@ -65,7 +65,7 @@ async function getActivePollsByUserId(request, response) {
 
   server.query('SELECT * FROM active_polls WHERE user_id = $1', [id], (error, result) => {
     if (error) {
-      throw error
+      return response.status(400).send(['Error loading data']).end();
     }
 
     return response.status(201).json(result.rows);
@@ -105,7 +105,7 @@ async function createUser(request, response) {
 
     server.query('INSERT INTO users (id, first_name, last_name, email, password) VALUES ($1, $2, $3, $4, $5)', [id, first_name, last_name, lowerEmail, hash], (error, result) => {
       if (error) {
-        throw error
+        return response.status(400).send(['Error loading data']).end();
       }
       return response.status(201).send({ msg: 'success' });
     })

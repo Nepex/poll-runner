@@ -13,7 +13,7 @@ const createPollParams = Joi.object().keys({
 const getPolls = (request, response) => {
     server.query('SELECT * FROM polls  ORDER BY poll_name ASC', (error, results) => {
         if (error) {
-            throw error
+            return response.status(400).send(['Error loading data']).end();
         }
         response.status(200).json(results.rows);
     })
@@ -24,7 +24,7 @@ async function getPollById(request, response) {
 
     server.query('SELECT * FROM polls WHERE id = $1', [id], (error, result) => {
         if (error) {
-            throw error
+            return response.status(400).send(['Error loading data']).end();
         }
 
         if (result.rows.length > 0) {
@@ -57,7 +57,7 @@ async function createPoll(request, response) {
 
     server.query('INSERT INTO polls (id, poll_name, questions) VALUES ($1, $2, $3)', [id, poll_name, questions], (error, result) => {
         if (error) {
-            throw error
+            return response.status(400).send(['Error loading data']).end();
         }
         return response.status(201).send({ msg: 'success' });
     })
@@ -68,7 +68,7 @@ async function deletePoll(request, response) {
 
     server.query('DELETE FROM polls WHERE id = $1', [id], (error, result) => {
         if (error) {
-            throw error
+            return response.status(400).send(['Error loading data']).end();
         }
         return response.status(201).send({ msg: 'success' });
     })

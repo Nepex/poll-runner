@@ -28,7 +28,7 @@ async function authenicateUser(request, response) {
 
     server.query('SELECT * FROM users WHERE email = $1', [lowerEmail], (error, result) => {
         if (error) {
-            throw error;
+            return response.status(400).send(['Error loading data']).end();
         }
 
         if (result.rows.length === 0) {
