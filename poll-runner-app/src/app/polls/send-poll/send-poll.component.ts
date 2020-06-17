@@ -100,7 +100,7 @@ export class SendPollComponent implements OnInit {
         }
 
         if (this.usersToDisplay.length === 0) {
-            this.messages.push({ message: 'Please select user(s) to send to', type: 'alert-danger' });
+            this.messages.push({ message: 'Please select user(s) to send to by clicking "Add Selected User"', type: 'alert-danger' });
             return;
         }
 
