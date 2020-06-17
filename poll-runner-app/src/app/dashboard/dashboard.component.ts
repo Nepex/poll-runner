@@ -105,8 +105,6 @@ export class DashboardComponent implements OnInit {
                 this.activePolls = [];
                 this.polls = res[1];
 
-
-
                 // only display incomplete polls for users
                 for (let i = 0; i < res[0].length; i++) {
                     if (res[0][i].status === 'completed') {
@@ -168,14 +166,17 @@ export class DashboardComponent implements OnInit {
             }
         }
 
-        // push responses -- loops through data array of questions, responses array on completed polls should be the same length
-        // so each responses index should match up with the selected question
+        // push responses
+        // data = array of questions for selected poll
+        // each completed active poll should have the same number of responses as questions in data, so loop through and add responses
         for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < this.selectedActivePolls.length; j++) {
+                // yes responses
                 if (this.selectedActivePolls[j].responses[i]) {
                     data[i].chartData[0].value++;
                 }
 
+                // no responses
                 if (!this.selectedActivePolls[j].responses[i]) {
                     data[i].chartData[1].value++;
                 }

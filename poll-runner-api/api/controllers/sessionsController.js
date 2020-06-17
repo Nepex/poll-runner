@@ -35,9 +35,8 @@ async function authenicateUser(request, response) {
             return response.status(400).send(['That email doesn\'t exist']).end();
         }
 
-        // in production environment, i would make sure admin password is hashed
-        if (lowerEmail === 'admin@example.com') {
-            if (password === 'password') {
+        bcrypt.compare(password, result.rows[0].password, function (err, res) {
+            if (res) {
                 var payload = {
                     id: result.rows[0].id
                 }
@@ -47,21 +46,8 @@ async function authenicateUser(request, response) {
             } else {
                 return response.status(400).send(['Incorrect email or password']).end();
             }
-        } else {
-            bcrypt.compare(password, result.rows[0].password, function (err, res) {
-                if (res) {
-                    var payload = {
-                        id: result.rows[0].id
-                    }
-                    var token = jwt.sign(payload, privateKey);
-
-                    return response.status(201).send({ msg: 'success', token: token });
-                } else {
-                    return response.status(400).send(['Incorrect email or password']).end();
-                }
-            });
-        }
-    })
+        });
+    });
 }
 
 module.exports = {
